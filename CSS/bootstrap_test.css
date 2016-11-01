@@ -46,7 +46,7 @@ body {
 
 #header_one {
     width: 400px;
-    height: 310px;
+    height: 330px;
     font-size: 550%;
 }
 
@@ -64,17 +64,51 @@ body {
     width: 250px;
 }
 
-#paragraph_div {
+#about_me_div {
     text-align: center;
     position: relative;
     width: 600px;
     height: 500px;
     margin-left: 425px;
-    margin-top: 50px;
+    margin-top: 70px;
 }
 
-#first_paragraph {
-    font-size: 120%;
+#about_paragraph {
+    font-size: 140%;
+}
+
+#first_hr {
+    margin: 0px;
+}
+
+#second_hr {
+    margin: 0px;
+}
+
+#container_third {
+    text-align: center;
+    position: relative;
+    width: 600px;
+    height: 500px;
+    margin-left: 425px;
+    margin-top: 60px;
+}
+
+#portfolio {
+    position: relative;
+    font-size: 300%;
+    width: 220px;
+    margin-left: 190px;
+    margin-top: 0px;
+}
+
+#portfolio_div {
+    text-align: center;
+    position: relative;
+    width: 600px;
+    height: 60px;
+    margin-left: 425px;
+    margin-top: 70px;
 }
 
 /*#second_h {*/
