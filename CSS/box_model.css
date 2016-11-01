@@ -1,0 +1,38 @@
+.div_box {
+    border: 1px solid black;
+    height: 50px;
+    width: 150px;
+    font-weight: bold;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+#first_box {
+    background-color: #ff4c31;
+}
+
+#second_box {
+    background-color: #ffb93e;
+    margin-left: 30px;
+}
+
+#third_box {
+    background-color: #fffb36;
+    margin-left: 60px;
+}
+
+#fourth_box {
+    background-color: #2aa137;
+    margin-left: 90px;
+}
+
+#fifth_box {
+    background-color: #5245ee;
+    margin-left: 120px;
+}
+
+#sixth_box {
+    background-color: #ff3eef;
+    margin-left: 150px;
+}

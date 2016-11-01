@@ -1,0 +1,21 @@
+
+body {
+    margin-top: 30px;
+    text-align: center;
+    background-color: burlywood;
+    background-attachment:;
+}
+
+#div_box {
+    border: 5px solid black;
+    padding: 0px 0px 25px 0px;
+    margin: 5em 33em 0em 33em;
+    text-align: center;
+}
+
+#img {
+    margin: 50px 50px 50px 50px;
+    border: 1px solid black;
+    height: auto;
+    width: 500px;
+}

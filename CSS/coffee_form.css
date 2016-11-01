@@ -1,0 +1,16 @@
+body {
+    background-image: url('../img/upfeathers.png');
+    text-align: center;
+    background-attachment: fixed;
+}
+
+#div_form {
+    border: solid;
+    margin: 0 auto;
+    width: 400px;
+    margin-top: 60px;
+}
+
+.header-color {
+    color: #8b603a;
+}

@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Oxygen');
+
+h1, h2 {
+    color: blue;
+    text-decoration: underline;
+}
+
+body {
+    background-image: url("../img/dab.png");
+    background-attachment: fixed;
+    background-repeat: repeat;
+    font-style: normal;
+    font-family: 'Oxygen', sans-serif;;
+    color: deeppink;
+}
+
+ul {
+    list-style: square;
+}
+
+table, tr, td {
+    font-size: larger;
+}
+
+td {
+    padding-left: 35px;
+}
+
+.table_padding {
+    padding-left: 55px;
+}
+
+a:link {
+    color:blue;
+}
+
+a:visited {
+    color:purple;
+}
+
+a:hover {
+    color:red;
+}
+
+a:active {
+    color:green;
+}

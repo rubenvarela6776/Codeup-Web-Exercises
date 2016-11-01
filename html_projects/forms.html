@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My First HTML Form</title>
+</head>
+<body>
+
+    <form method="POST" action="http://requestb.in/1lcwb361">
+        <h1>User Login</h1>
+        <p>
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" placeholder="username goes here">
+        </p>
+        <p>
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" placeholder="password goes here">
+        </p>
+        <p>
+            <button>Login</button>
+        </p>
+    </form>
+    <form method="POST" action="http://requestb.in/1lcwb361">
+        <h2>Compose An Email</h2>
+        <p>
+            <label for="to">To</label>
+            <input type="text" id="to" name="to">
+        </p>
+        <p>
+            <label for="from">From</label>
+            <input type="text" id="from" name="from">
+        </p>
+        <p>
+            <label for="subject">Subject</label>
+            <input type="text" id="subject" name="subject">
+        </p>
+        <p>
+            <label for="body">Body</label>
+            <textarea id="body" name="body" rows="4" cols="40"></textarea>
+        </p>
+        <p>
+            <input type="checkbox" id="save_copy" name="save_copy" value="yes" checked>
+            <label for="save_copy">Save Copy to Sent Folder</label>
+        </p>
+        <p>
+            <button>Send</button>
+        </p>
+    </form>
+    <form method="POST" action="http://requestb.in/1lcwb361">
+        <h2>Multiple Choice Test</h2>
+        <p><strong>What is the purpose of life?</strong></p>
+        <label>
+            <input type="radio" name="q1" value="everything">
+            Everything
+        </label>
+        <label>
+            <input type="radio" name="q1" value="no_purpose">
+            No purpose
+        </label>
+        <label>
+            <input type="radio" name="q1" value="42">
+            42
+        </label>
+        <label>
+            <input type="radio" name="q1" value="napkin">
+            Napkin
+        </label>
+        <p>
+        <button>Submit</button>
+        </p>
+        <label for="synonym_good">What is a synonym of good?</label>
+        <p>
+            <select id="synonym_good" name="synonym_good[]" multiple>
+                <option value="great">Great</option>
+                <option value="amazing">Amazing</option>
+                <option value="bad">Bad</option>
+                <option value="awful">Awful</option>
+            </select>
+        </p>
+        <button>Submit</button>
+    </form>
+    <form method="POST" action="http://requestb.in/1lcwb361">
+        <p><strong>What is a synonym(s) of bad?</strong></p>
+        <p>
+            <input type="checkbox" id="terrible" name="terrible" value="correct">
+            <label for="terrible">Terrible</label>
+        </p>
+        <p>
+        <input type="checkbox" id="great" name="great" value="incorrect">
+        <label for="great">Great</label>
+        </p>
+        <p>
+            <input type="checkbox" id="amazing" name="amazing" value="incorrect">
+            <label for="amazing">Amazing</label>
+        </p>
+        <p>
+            <input type="checkbox" id="awful" name="awful" value="correct">
+            <label for="awful">Awful</label>
+        </p>
+            <button>Submit</button>
+        </p>
+    </form>
+    <form method="POST" action="http://requestb.in/1lcwb361">
+        <h2>Select Testing</h2>
+        <label for="male">Are you a male?</label>
+        <select id="male" name="male">
+            <option value="1" selected>Yes</option>
+            <option value="0">No</option>
+        </select>
+        <p>
+            <button>Submit</button>
+        </p>
+    </form>
+    <!--<form method="GET" action="http://www.google.com/search">-->
+    <!--<label for="q">Search Term</label>-->
+    <!--<input type="text" id="q" name="q" placeholder="hello">-->
+    <!--<input type="password" name="password">-->
+    <!--<input type="checkbox" name="checkbox">-->
+    <!--<label for="radio"><input type="radio" id="radio" name="radio">Choice</label>-->
+    <!--<br>-->
+    <!--<textarea name="bigtext" rows="50 cols=10"></textarea>-->
+    <!--<br>-->
+    <!--<input type="submit" name="submit">-->
+    <!--<br>-->
+    <!--<label for="red">Red</label>-->
+    <!--<input type=checkbox id="red" value="red" name="color" checked>-->
+    <!--<br>-->
+    <!--<input type="submit">-->
+    <!--</form>-->
+    <!--<form method="POST">-->
+        <!--<h3>Radios</h3>-->
+        <!--<input type="submit">-->
+        <!--<h1>select</h1>-->
+        <!--<label for="list">List</label>-->
+        <!--<select name="states[]" id="states">-->
+            <!--<option value="TX">Texas</option>-->
+            <!--<option value="CA">California</option>-->
+            <!--<option value="ND">North Dakota</option>-->
+        <!--</select>-->
+        <!--<input type="submit">-->
+    <!--</form>-->
+</body>
+</html>

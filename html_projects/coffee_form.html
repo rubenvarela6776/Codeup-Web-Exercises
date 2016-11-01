@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coffee Form</title>
+    <link rel="stylesheet" href="../CSS/coffee_form.css">
+</head>
+<body>
+<div id="div_form">
+    <h1 id="fancy-header" class="header-color">Coffee Bean Order Form</h1>
+    <form method="POST" action="http://requestb.in/1lcwb361">
+        <h2 class="header-color">Type of Roast:</h2>
+        <label for="dark">Dark</label>
+        <input type="radio" id="dark" name="roast" value="dark">
+        <label for="light">Light</label>
+        <input type="radio" id="light" name="roast" value="light">
+        <h2 class="header-color">Amount:</h2>
+        <input type="text" id="amount" name="amount">
+        <p>
+            <input type="checkbox" id="renew" name="renew" value="yes" checked>
+            <label for="renew">Auto Renew</label>
+        </p>
+        <h2 class="header-color">Address:</h2>
+        <p>
+            <label for="street">Street:</label>
+            <input type="text" id="street" name="street">
+        </p>
+        <p>
+            <label for="city">City:</label>
+            <input type="text" id="city" name="city">
+        </p>
+        <p>
+            <label for="state">State:</label>
+            <input type="text" id="state" name="state">
+        </p>
+        <p>
+            <button>Submit</button>
+        </p>
+    </form>
+</div>
+</body>
+</html>
