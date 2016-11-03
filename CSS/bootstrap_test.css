@@ -1,5 +1,4 @@
 body {
-    /*padding-top: 70px;*/
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -11,70 +10,34 @@ body {
     margin-left: 30px;
 }
 
-#background {
+#container_div {
     position: relative;
-    background-image: url("../img/me_pic.jpg");
+    width: 100%;
+    height: 737px;
+    /*background-color: gray;*/
+    background-image: url("../img/web_pic.jpg");
+    /*background-position: 100%;*/;
     background-repeat: no-repeat;
     background-size: cover;
-    z-index: -999;
-    width: 1440px;
-    height: 900px;
-}
-
-#container_id {
-    padding: 0%;
-}
-
-#first_logo {
-    position: relative;
 }
 
 #rv_logo {
-    position: absolute;
-    top: 100px;
-    left: 50px;
-    width:150px;
+    position: relative;
+    top: 90px;
+    left: 33px;
+    width: 23%;
 }
 
-#first_h {
-    position: absolute;
-    top: 370px;
-    left: 900px;
-    text-align: center;
+#main-header {
+    width: 75%;
+    margin: 0 auto;
     color: white;
+    top: 160px;
+    margin-left: 70px;
 }
 
-#header_one {
-    width: 400px;
-    height: 330px;
-    font-size: 550%;
-}
-
-#about_me {
-    position: relative;
-    font-size: 300%;
-    width: 220px;
-}
-
-#container_second {
-    text-align: center;
-    position: relative;
-    margin-left: 600px;
-    margin-top: 60px;
-    width: 250px;
-}
-
-#about_me_div {
-    text-align: center;
-    position: relative;
-    width: 600px;
-    height: 500px;
-    margin-left: 425px;
-    margin-top: 70px;
-}
-
-#about_paragraph {
-    font-size: 140%;
+#header_size {
+    font-size: 350%;
 }
 
 #first_hr {
@@ -85,44 +48,66 @@ body {
     margin: 0px;
 }
 
-#container_third {
+#about_me {
+    font-size: 350%;
+    top: 100px;
     text-align: center;
-    position: relative;
-    width: 600px;
-    height: 500px;
-    margin-left: 425px;
-    margin-top: 60px;
 }
 
-#portfolio {
+#about_paragraph {
+    font-size: 160%;
+    margin-top: 60px;
+    width: 100%;
+    text-align: center;
+}
+
+#about_me_div {
+    margin-top: 60px;
     position: relative;
-    font-size: 300%;
-    width: 220px;
-    margin-left: 190px;
-    margin-top: 0px;
+    height: 630px;
+    width: 64%;
+    margin-left: 18%;
+    margin-right: 18%;
+    text-align: center;
+}
+
+#hr_anchor {
+    bottom: 200px;
 }
 
 #portfolio_div {
-    text-align: center;
+    margin-top: 60px;
     position: relative;
-    width: 600px;
-    height: 60px;
-    margin-left: 425px;
-    margin-top: 70px;
+    height: 657px;
+    width: 64%;
+    margin-left: 18%;
+    margin-right: 18%;
+    text-align: center;
 }
 
-/*#second_h {*/
-    /*position: absolute;*/
-    /*top: 120px;*/
-    /*left: 600px;*/
-    /*color: white;*/
-    /*font-style: italic;*/
-    /*text-align: center;*/
-    /*text-decoration: underline;*/
-/*}*/
+#portfolio_header {
+    font-size: 350%;
+    margin-bottom: ;
+}
 
-/*#header_two {*/
-    /*width: 200px;*/
-    /*height: 50px;*/
-    /*font-size: 300%;*/
-/*}*/
+#contact_div {
+    margin-top: 60px;
+    position: relative;
+    width: 64%;
+    margin-left: 18%;
+    margin-right: 18%;
+    text-align: center;
+    height: 237px;
+}
+
+#contact_header {
+
+}
+
+#myCarousel {
+    position: relative;
+    top: 20px;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
