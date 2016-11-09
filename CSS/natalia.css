@@ -1,0 +1,29 @@
+body {
+    margin: 0 auto;
+}
+
+.container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#home_div {
+    position: relative;
+    background-color: aqua;
+    background-size: cover;
+    width: 100%;
+    height: 737px;
+    bottom: 50px;
+}
+
+#home_header {
+    position: relative;
+    color: white;
+    font-size: 450%;
+    text-decoration: underline;
+    text-decoration-style: wavy;
+    top: 270px;
+    left: 16%;
+    width: 70%;
+    text-align: center;
+}
