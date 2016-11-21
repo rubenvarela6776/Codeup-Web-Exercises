@@ -2,26 +2,50 @@
  * Created by rubenvarela on 11/16/16.
  */
 
+//if decimal pressed first, make value 0 before decimal
+//set max amount of decimal placements allowed to result
+//output result every time operator is clicked to not make it necessary to press equals
+//be able to put decimal to third box after you've gotten result
+
 (function() {
     "use strict";
+
+    var decimalPressedOne = false;
+    var decimalPressedTwo = false;
+    var result;
 
     var numberButtons = function() {
         innerAlert.innerHTML = "";
         if(secondBox.value == "") {
-            firstBox.value = firstBox.value += this.innerHTML;
+            firstBox.value += this.innerHTML;
         } else {
-            thirdBox.value = thirdBox.value += this.innerHTML;
+            thirdBox.value += this.innerHTML;
         }
-        var string = firstBox.value.toString(firstBox.value);
-        if(string.indexOf(".") >= 0) {
+    };
 
+    var decimalBtn = function() {
+        innerAlert.innerHTML = "";
+        if(secondBox.value == "") {
+            if(decimalPressedOne == false) {
+                decimalPressedOne = true;
+            } else {
+                return;
+            }
+            firstBox.value += this.innerHTML;
+        } else {
+            if(decimalPressedTwo == false) {
+                decimalPressedTwo = true;
+            } else {
+                return;
+            }
+            thirdBox.value += this.innerHTML;
         }
     };
 
     var operationsButtons = function() {
         innerAlert.innerHTML = "";
         if(firstBox.value == "") {
-            innerAlert.innerHTML = "Sorry you can't do that...";
+            innerAlert.innerHTML = "Input Number First";
         } else {
             secondBox.value = this.innerHTML
         }
@@ -30,35 +54,31 @@
     var equalsBtn = function() {
         innerAlert.innerHTML = "";
         if(firstBox.value == "NaN" || thirdBox.value == "") {
-            innerAlert.innerHTML = "Sorry you can't do that...";
+            innerAlert.innerHTML = "Sorry You Can't Do That";
             firstBox.value = "";
             secondBox.value = "";
             thirdBox.value = "";
         }
         if(secondBox.value == "+") {
-            var result = parseFloat(firstBox.value) + parseFloat(thirdBox.value);
-            firstBox.value = result;
+            firstBox.value = parseFloat(firstBox.value) + parseFloat(thirdBox.value);
             thirdBox.value = "";
         }
         if(secondBox.value == "-") {
-            var result = parseFloat(firstBox.value) - parseFloat(thirdBox.value);
-            firstBox.value = result;
+            firstBox.value = parseFloat(firstBox.value) - parseFloat(thirdBox.value);
             thirdBox.value = "";
         }
         if(secondBox.value == "x") {
-            var result = parseFloat(firstBox.value) * parseFloat(thirdBox.value);
-            firstBox.value = result;
+            firstBox.value = parseFloat(firstBox.value) * parseFloat(thirdBox.value);
             thirdBox.value = "";
         }
         if(secondBox.value == "/" && thirdBox.value == 0) {
-            innerAlert.innerHTML = "Sorry you can't do that...";
+            innerAlert.innerHTML = "You Can't Divide By Zero";
             firstBox.value = "";
             secondBox.value = "";
             thirdBox.value = "";
         }
         if(secondBox.value == "/") {
-            var result = parseFloat(firstBox.value) / parseFloat(thirdBox.value);
-            firstBox.value = result;
+            firstBox.value = parseFloat(firstBox.value) / parseFloat(thirdBox.value);
             thirdBox.value = "";
         }
         // if(firstBox.value > firstBox.value.toFixed(4) ) {
@@ -68,8 +88,23 @@
     };
 
     var powerBtn = function() {
-        var result = parseFloat(firstBox.value) * parseFloat(firstBox.value);
-        firstBox.value = result;
+        firstBox.value = parseFloat(firstBox.value) * parseFloat(firstBox.value);
+        if(firstBox.value == "NaN") {
+            innerAlert.innerHTML = "Input Number First";
+            firstBox.value = "";
+            secondBox.value = "";
+            thirdBox.value = "";
+        }
+    };
+
+    var squareRootBtn = function() {
+        firstBox.value = Math.sqrt(parseFloat(firstBox.value));
+        if(firstBox.value == "NaN") {
+            innerAlert.innerHTML = "Input Number First";
+            firstBox.value = "";
+            secondBox.value = "";
+            thirdBox.value = "";
+        }
     };
 
     var clearBtn = function() {
@@ -77,6 +112,8 @@
         firstBox.value = "";
         secondBox.value = "";
         thirdBox.value = "";
+        decimalPressedOne = false;
+        decimalPressedTwo = false;
     };
 
 
@@ -101,11 +138,12 @@
     var btnDivide = document.getElementById('btnDivide');
     var btnSum = document.getElementById('btnSum');
     var btnPower = document.getElementById('btnPower');
+    var btnSquareRoot = document.getElementById('btnSquareRoot');
     var btnClear = document.getElementById('btnClear');
 
     var innerAlert = document.getElementById('innerAlert');
 
-    btnDecimal.addEventListener('click', numberButtons);
+    btnDecimal.addEventListener('click', decimalBtn);
     btnZero.addEventListener('click', numberButtons);
     btnOne.addEventListener('click', numberButtons);
     btnTwo.addEventListener('click', numberButtons);
@@ -122,6 +160,7 @@
     btnDivide.addEventListener('click', operationsButtons);
     btnSum.addEventListener('click', equalsBtn);
     btnPower.addEventListener('click', powerBtn);
+    btnSquareRoot.addEventListener('click', squareRootBtn);
     btnClear.addEventListener('click', clearBtn);
 
 })();
