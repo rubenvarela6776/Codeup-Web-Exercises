@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery</title>
+</head>
+<body>
+    <h1 id="firstHeader" class="codeup">First Header</h1>
+    <p id="firstParagraph" class="paragraphs">This is the first paragraph</p>
+    <ul id="firstUl">
+        <li id="liOne">List Item 1</li>
+        <li id="liTwo">List Item 2</li>
+        <li id="liThree">List Item 3</li>
+        <li id="liFour">List Item 4</li>
+        <li id="liFive">List Item 5</li>
+    </ul>
+    <div id="firstDiv">
+        <h1 id="secondHeader">Second Header</h1>
+        <p id="secondParagraph" class="paragraphs">Second <span class="codeup">Paragraph</span></p>
+    </div>
+    <h1 class="codeup">Third Header</h1>
+</body>
+<script src="../js/jquery-2.2.4.js"></script>
+<script>
+    $(document).ready(function() {
+
+        $(".codeup").css("outline", "solid red 1px");
+
+        $("li").css("font-size", "20px");
+
+        $("h1, p, li").css("background-color", "lightgray");
+
+//        $("ul > li").css("color", "red");
+
+        $("li").parent().css("color", "blue");
+
+        $("li").first().css("color", "green");
+
+        $("li:first-of-type").css("color", "red");
+
+
+
+
+//        var content = $("h1");
+//
+//        alert(content.html());
+
+    });
+
+</script>
+</html>

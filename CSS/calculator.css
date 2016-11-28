@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather|PT+Sans|Roboto');
+
+html {
+	background-color: tan;
+}
+
+#calculator_header {
+    position: relative;
+	width: 50%;
+	margin-top: 5%;
+	margin-left: 37%;
+	font-size: 80px;
+	margin-bottom: 1%;
+	font-family: 'Roboto', sans-serif;
+	color: peachpuff;
+}
+
+p {
+    width: 80%;
+    margin-top: 0;
+    margin-left: 11%;
+    text-align: center;
+    margin-bottom: 2%;
+    font-size: 50px;
+    font-family: 'Roboto', sans-serif;
+    color: darkred;
+}
+
+#calculator_div {
+	border: 1px solid;
+	height: 410px;
+	width: 20%;
+	margin-left: 39.5%;
+	padding: 10px;
+	background-color: #666666;
+	border-radius: 5px;
+}
+
+button {
+	margin-top: 3%;
+	font-size: 30px;
+	font-weight: bolder;
+	border: none;
+	height: 50px;
+	width: 20%;
+	margin-left: 3%;
+	margin-bottom: 5%;
+	border-radius: 20px;
+	color: #392b1d;
+	cursor: pointer;
+	outline: none;
+	box-shadow: 0 5px #999;
+	/*-webkit-transition: -webkit-transform .8s ease-in-out;*/
+	/*transition: transform .8s ease-in-out;*/
+}
+
+button:hover {
+	/*background-color: #999;*/
+	/*-webkit-transform: rotateX(360deg);*/
+	/*transform: rotateX(360deg);*/
+}
+
+button:active {
+	box-shadow: 0 5px #666;
+	transform: translateY(4px);
+}
+
+/*button:active {*/
+	/*-webkit-transform: rotateY(360deg);*/
+	/*transform: rotateY(360deg);*/
+/*}*/
+
+button:focus {
+	outline:0;
+}
+
+#btnAdd {
+	background-color: rgba(255, 79, 173, 0.95);
+	box-shadow: 0 5px #bb3c7e;
+}
+
+#btnAdd:hover {
+	/*background-color: #4bf7ff;*/
+}
+
+#btnSubtract {
+    background-color: rgba(255, 79, 173, 0.95);
+	box-shadow: 0 5px #bb3c7e;
+}
+
+#btnSubtract:hover {
+	/*background-color: #4bf7ff;*/
+}
+
+#btnMultiply {
+    background-color: rgba(255, 79, 173, 0.95);
+	box-shadow: 0 5px #bb3c7e;
+}
+
+#btnMultiply:hover {
+	/*background-color: #4bf7ff;*/
+}
+
+#btnDivide {
+    background-color: rgba(255, 79, 173, 0.95);
+	box-shadow: 0 5px #bb3c7e;
+}
+
+#btnDivide:hover {
+	/*background-color: #4bf7ff;*/
+}
+
+#btnClear {
+    width: 45%;
+	background-color: #ecb52b;
+	box-shadow: 0 5px #bf8e28;
+}
+
+#btnClear:hover {
+	/*background-color: #4bf7ff;*/
+}
+
+#btnSum {
+	background-color: #68a1ff;
+	box-shadow: 0 5px #626ac4;
+}
+
+#btnSum:hover {
+	/*background-color: #4bf7ff;*/
+}
+
+#btnPower {
+    background-color: #a8ae71;
+    box-shadow: 0 5px #868c5a;
+}
+
+#btnSquareRoot {
+    background-color: #a8ae71;
+    box-shadow: 0 5px #868c5a;
+}
+
+#firstBox {
+	width: 40%;
+	line-height: 25px;
+	margin-top: 10px;
+	margin-bottom: 4%;
+	border-radius: 5px;
+    border-style: ridge;
+	background-color: rgb(179, 190, 130);
+}
+
+#secondBox {
+	width: 10%;
+	line-height: 25px;
+	border-radius: 5px;
+    border-style: ridge;
+    background-color: rgb(179, 190, 130);
+}
+
+#thirdBox {
+	width: 40%;
+	line-height: 25px;
+	border-radius: 5px;
+    border-style: ridge;
+    background-color: rgb(179, 190, 130);
+}

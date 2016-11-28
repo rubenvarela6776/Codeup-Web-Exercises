@@ -10,8 +10,7 @@
 (function() {
     "use strict";
 
-    var decimalPressedOne = false;
-    var decimalPressedTwo = false;
+    var decimalPressed = false;
     var result;
 
     var numberButtons = function() {
@@ -26,15 +25,20 @@
     var decimalBtn = function() {
         innerAlert.innerHTML = "";
         if(secondBox.value == "") {
-            if(decimalPressedOne == false) {
-                decimalPressedOne = true;
+            if(decimalPressed == false) {
+                decimalPressed = true;
             } else {
                 return;
             }
             firstBox.value += this.innerHTML;
         } else {
-            if(decimalPressedTwo == false) {
-                decimalPressedTwo = true;
+            if(decimalPressed == false) {
+                decimalPressed = true;
+            } else {
+                return;
+            }
+            if(decimalPressed == true && firstBox.value != "") {
+                decimalPressed = false;
             } else {
                 return;
             }
@@ -81,10 +85,6 @@
             firstBox.value = parseFloat(firstBox.value) / parseFloat(thirdBox.value);
             thirdBox.value = "";
         }
-        // if(firstBox.value > firstBox.value.toFixed(4) ) {
-        //     var result = firstBox.value.toFixed(4);
-        //     firstBox.value = result
-        // }
     };
 
     var powerBtn = function() {
@@ -112,8 +112,7 @@
         firstBox.value = "";
         secondBox.value = "";
         thirdBox.value = "";
-        decimalPressedOne = false;
-        decimalPressedTwo = false;
+        decimalPressed = false;
     };
 
 
