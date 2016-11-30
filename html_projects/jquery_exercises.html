@@ -18,9 +18,9 @@
         <h1 id="secondHeader">Second Header</h1>
         <p id="secondParagraph" class="paragraphs">Second <span class="codeup">Paragraph</span></p>
     </div>
-    <h1 class="codeup">Third Header</h1>
+    <h1 id="thirdHeader" class="codeup">Third Header</h1>
 </body>
-<script src="../js/jquery-2.2.4.js"></script>
+<script src="../js/jquery.js"></script>
 <script>
     $(document).ready(function() {
 
@@ -38,12 +38,33 @@
 
         $("li:first-of-type").css("color", "red");
 
-
-
-
 //        var content = $("h1");
 //
 //        alert(content.html());
+
+
+
+        $("h1, p, ul").hover(function () {
+            $("h1, p, ul").css("cursor", "pointer")
+        });
+
+        $("#thirdHeader").click(function() {
+            $("#thirdHeader").css("background-color", "tan");
+        });
+
+        $("p").dblclick(function() {
+            $("p").css("font-size", "30px");
+        });
+
+        $("li").hover(
+            function() {
+                $("li").css("color", "blue")
+            },
+            function () {
+                $("li").css("color", "red")
+            }
+        )
+
 
     });
 

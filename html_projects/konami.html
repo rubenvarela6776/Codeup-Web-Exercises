@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Konami Code</title>
+</head>
+<body>
+<h1>Konami Code</h1>
+</body>
+<script src="../js/jquery.js"></script>
+<script>
+    "use strict";
+
+
+    $(document).ready(function() {
+
+        var konamiCode = [38,38,40,40,37,39,37,39,66,65,13];
+        var index = 0;
+
+        $(document).keyup(function (event) {
+            if(konamiCode[index] == event.keyCode) {
+                index++
+            } else {
+                index = 0
+            }
+
+            console.log(event.keyCode);
+
+            if(index == konamiCode.length) {
+                alert("hey")
+            }
+
+        });
+
+    });
+
+    //up is 38
+    //down is 40
+    //left is 37
+    //right is 39
+    //a is 65
+    //b is 66
+    //enter is 13
+
+
+</script>
+</html>
