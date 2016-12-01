@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Animate</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Merriweather+Sans');
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: antiquewhite;
+        }
+        h1 {
+            text-align: center;
+            color: lightcoral;
+            font-size: 60px;
+            font-family: 'Merriweather Sans', sans-serif;
+
+        }
+        #animate-box {
+            background-color: tan;
+            height: 250px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 5%;
+            position: relative;
+            width: 250px;
+        }
+        button {
+            border: none;
+            background-color: lightcoral;
+            color: white;
+            margin-left: 15px;
+            height: 25px;
+            width: 90px;
+            font-size: 18px;
+            outline: none;
+            margin-top: 10px;
+        }
+        p {
+            margin-top: 9%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>The Moving Box</h1>
+    <div id="animate-box"></div>
+    <p>
+        <button id="btn-up">Up</button>
+        <button id="btn-down">Down</button>
+        <button id="btn-left">Left</button>
+        <button id="btn-right">Right</button>
+        <button id="btn-reset">Reset</button>
+        <br>
+        <button id="btn-move">Move It</button>
+        <button id="btn-scale">Scale It</button>
+        <button id="btn-hide">Hide It</button>
+        <button id="btn-show">Show It</button>
+        <button id="btn-all">Animate</button>
+    </p>
+
+    <script src="../js/jquery.js"></script>
+    <script>
+    $(document).ready(function() {
+        "use strict";
+        // TODO: "Move It" should move the box 100 pixels to the left
+
+        $("#btn-move").click(function() {
+            $("#animate-box").animate({
+                left: "-=100"
+            }, 250)
+        });
+
+        // TODO: "Scale It" should expand the box width by 50%
+
+        $("#btn-scale").click(function() {
+            $("#animate-box").animate({
+                width: "+=125"
+            }, 250)
+        });
+
+        // TODO: "Hide It" should use opacity to make the box invisible
+
+        $("#btn-hide").click(function() {
+            $("#animate-box").animate({
+                opacity: "0"
+            }, 1250)
+        });
+
+        // TODO: "Show It" should make the box appear
+
+        $("#btn-show").click(function() {
+            $("#animate-box").animate({
+                opacity: "1"
+            }, 1250)
+        });
+
+        // TODO: "Animate All" should use an animation stack to:
+        //      1) Move and scale the box simultaneously
+        //      2) Hide the box
+        //      3) Reset the box back to its original position and opacity
+
+        $("#btn-all").click(function() {
+            $("#animate-box").animate({
+                left: "+=100",
+                top: "+=75"
+            }, 250).animate({
+                left: "+=50",
+                top: "-=50"
+            }, 250).animate({
+                left: "-=100",
+                top: "+=50"
+            }, 250).animate({
+                left: "-=200",
+                top: "-=140"
+            }, 500).animate({
+                left: "-=180",
+                top: "+=140"
+            }, 500).animate({
+                opacity: "0"
+            }, 1000, function() {
+                $("#animate-box").removeAttr("style")
+            });
+        });
+
+        //up
+
+        $("#btn-up").click(function() {
+            $("#animate-box").animate({
+                top: "-=50"
+            }, 250)
+        });
+
+        //down
+
+        $("#btn-down").click(function() {
+            $("#animate-box").animate({
+                top: "+=50"
+            }, 250)
+        });
+
+        //left
+
+        $("#btn-left").click(function() {
+            $("#animate-box").animate({
+                left: "-=50"
+            }, 250)
+        });
+
+        //right
+
+        $("#btn-right").click(function() {
+            $("#animate-box").animate({
+                left: "+=50"
+            }, 250)
+        });
+
+        //reset
+
+        $("#btn-reset").click(function() {
+            $("#animate-box").removeAttr("style")
+        });
+
+    });
+    </script>
+</body>
+</html>
