@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajax Blog</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        h1 {
+            padding-bottom: 15px;
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+            /*font-size: 50px;*/
+        }
+        p {
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 20px;
+        }
+        #category {
+            font-size: 20px;
+        }
+        #date {
+            font-size: 20px;
+            font-style: italic;
+        }
+        #header_div {
+            position: relative;
+            height: 100%;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: -100;
+        }
+        .fullscreen-bg__video {
+            position: relative;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        @media (min-aspect-ratio: 16/9) {
+            .fullscreen-bg__video {
+                height: 300%;
+                top: -100%;
+            }
+        }
+        @media (max-aspect-ratio: 16/9) {
+            .fullscreen-bg__video {
+                width: 300%;
+                height: 1100px;
+                left: -100%;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .fullscreen-bg {
+                background: url('../img/website_pic.png') center center / cover no-repeat;
+            }
+            .fullscreen-bg__video {
+                display: none;
+            }
+        }
+        #header_h1 {
+            position: absolute;
+            color: #9f7777;
+            /*font-style: italic;*/
+            width: 95%;
+            text-align: right;
+            z-index: 99999999;
+            font-size: 100px;
+            /*margin-top: 15%;*/
+            /*opacity: 0.7;*/
+            font-family: 'Open Sans Condensed', sans-serif;
+        }
+        #newPostDiv {
+            width: 100%;
+            background-color: rosybrown;
+            text-align: center;
+        }
+        #newPostHeader {
+            font-family: 'Open Sans Condensed', sans-serif;
+            text-align: center;
+            color: white;
+            font-size: 80px;
+            padding-top: 3%;
+        }
+        input {
+            border-radius: 4px;
+            margin-bottom: 3%;
+        }
+        textarea {
+            border-radius: 4px;
+            margin-bottom: 3%;
+            border: none;
+            resize: vertical;
+        }
+        label {
+            font-family: 'Open Sans Condensed', sans-serif;
+            font-size: 40px;
+        }
+        #title {
+            margin-top: 4%;
+            width: 40%;
+            height: 35px;
+        }
+        #content {
+            width: 40%;
+            height: 70px;
+        }
+        #dates {
+            width: 40%;
+            height: 35px;
+            margin-bottom: 7%;
+        }
+        #tags {
+            width: 40%;
+            height: 35px;
+        }
+        button {
+            border: none;
+            width: 40%;
+            background-color: white;
+            font-family: 'Open Sans Condensed', sans-serif;
+            font-size: 20px;
+        }
+        #btnP {
+            text-align: center;
+            margin-bottom: 0;
+            padding-bottom: 5%;
+        }
+        .removeBtn {
+            width: 7%;
+            background-color: #ff3737;
+            color: white;
+            border-radius: 15px;
+            margin-left: 75%;
+            outline: none;
+        }
+    </style>
+</head>
+<body>
+<div id="header_div" class="fullscreen-bg">
+    <h1 id="header_h1">Meet <br>Ruben Varela.</h1>
+    <video loop muted autoplay poster="../img/website_pic.png" class="fullscreen-bg__video">
+        <source src="../img/website_vid.mp4" type="video/mp4">
+    </video>
+</div>
+<div id="posts"></div>
+<div id="newPostDiv">
+    <h1 id="newPostHeader">New Post</h1>
+    <form action="../data/blog.json" method="POST" id="form1">
+        <div class="form-group">
+            <input id="title" placeholder="TITLE" required>
+            <br>
+            <textarea id="content" placeholder="CONTENT" required></textarea>
+            <br>
+            <input id="tags" placeholder="TAGS" required>
+            <br>
+            <input id="dates" placeholder="DATE" type="date" required>
+            <br>
+        </div>
+    </form>
+    <p id="btnP"><button id="submitBtn" type="submit" form="form1">POST</button></p>
+</div>
+<script src="../js/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script>
+    (function() {
+
+        var blog = $.ajax("../data/blog.json", {
+            type: "GET"
+        });
+        var blogContent = "";
+        var populateBlog = function (object) {
+            blogContent += "<div>" + "<br>" + "<h1>" + object.title + "</h1>" +
+            "<p>" + object.content + "</p>" + "<br>" + "<p id='category'>" +
+            object.categories + "</p>" + "<br>" + "<p id='date'>" + object.date + "</p>" + "<button class='removeBtn'>" + "Remove" + "</button>" + "</div>";
+        };
+
+        blog.done(function(data) {
+            data.forEach(function(object) {
+                populateBlog(object);
+            });
+            $("#posts").html(blogContent);
+
+//            $(".removeBtn").click(function() {
+//                var removePost = $(this).parent();
+//                array.splice(removePost)
+//            })
+        });
+
+
+
+        var array = [];
+
+        $("#submitBtn").click(function() {
+            if($("#title").value == "" || $("#content").value == "" || $("#tags").value == "") {
+                var title = $("#title").val();
+                var content = $("#content").val();
+                var date = $("#dates").val();
+                var categories = $("#tags").val();
+                var newPost = {
+                    title: title,
+                    content: content,
+                    date: date,
+                    categories: categories
+                };
+                blogContent = "";
+                array.push(newPost);
+                array.forEach(function (object) {
+                    populateBlog(object)
+                });
+                $("#posts").append(blogContent);
+                array.pop();
+            }
+        });
+
+
+
+    })();
+</script>
+</body>
+</html>

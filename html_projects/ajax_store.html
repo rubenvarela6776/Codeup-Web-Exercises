@@ -2,12 +2,55 @@
 <html>
 <head>
     <title>Online Store</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            text-align: center;
+            font-size: 60px;
+            margin-bottom: 3%;
+        }
+        table {
+            text-align: center;
+            width: 100%;
+            height: 200px;
+        }
+        tr, th, td {
+            text-align: center;
+        }
+        th {
+            font-size: 22px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        td {
+            font-size: 18px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        button {
+            font-family: 'Montserrat', sans-serif;
+            border: none;
+            width: 30%;
+            font-size: 22px;
+            margin-left: 35%;
+            margin-right: 35%;
+            margin-top: 2%;
+            outline: none;
+            box-shadow: 0 5px #999;
+            background-color: #e7e7e7;
+            border-radius: 8px;
+        }
+        button:active {
+            box-shadow: 0 0;
+            transform: translateY(4px);
+        }
+    </style>
 </head>
 <body>
 
 <h1>My Tool Store</h1>
 
-<table id="products">
+<table id="products" class="table-striped">
     <thead>
         <tr>
             <th>Title</th>
@@ -18,18 +61,54 @@
     </thead>
     <tbody id="insertProducts"></tbody>
 </table>
+<button>Refresh</button>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
+<script src="../js/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <script>
 (function() {
     "use strict";
     // TODO: Create an ajax GET request for /data/inventory.json
 
-    // TODO: Take the data from inventory.json and append it to the products table
-    //       HINT: Your data should come back as a JSON object; use console.log() to inspect
-    //             its contents and fields
-    //       HINT: You will want to target #insertProducts for your new HTML elements
+    var reload = function () {
+
+        var jqxhr = $.ajax("../data/inventory.json", {
+            type: "GET"
+        });
+
+        jqxhr.done(function(data) {
+            console.log(data);
+            var dataString;
+
+            data.forEach(function(object, index, arr) {
+                dataString += '<tr><td>' + object.title
+                        + '</td><td>' + object.quantity
+                        + '</td><td>' + object.price
+                        + '</td><td>' + object.categories
+                        + '</td></tr>';
+            });
+
+            $("#insertProducts").html(dataString);
+
+        });
+
+        jqxhr.fail(function () {
+            console.log("Failure")
+        });
+
+        jqxhr.always(function () {
+            console.log("Completed")
+        });
+
+    };
+    reload();
+
+    $("button").click(function() {
+        reload();
+    })
+
+
 })();
 </script>
 

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Map</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <style>
+        #forecast_content {
+            /*text-align: center;*/
+            width: 100%;
+            margin-left: 9%;
+            height: 145px;
+            padding-top: 20px;
+            padding-bottom: 5%;
+        }
+        .contentDiv {
+            float: left;
+            /*text-align: center;*/
+            margin-left: 15px;
+            margin-right: 15px;
+            border: solid black 1px;
+            width: 25%;
+            background-color: darkgray;
+            color: white;
+            font-size: 23px;
+            font-family: 'Merriweather Sans', sans-serif;
+            padding-top: 8px;
+            border-radius: 8px;
+        }
+        #mainHeader {
+            text-align: center;
+            padding-bottom: 2%;
+            margin-top: 2%;
+            font-size: 55px;
+            font-family: 'Raleway', sans-serif;
+
+        }
+        #locationHeader {
+            text-align: center;
+            font-size: 45px;
+            font-family: 'Raleway', sans-serif;
+        }
+        img {
+            width: 25%;
+            margin-left: 4%;
+            padding-bottom: 105px;
+            float:left
+        }
+        p {
+            text-align: center;
+            width: 100%;
+            font-family: 'Raleway', sans-serif;
+        }
+        #mapCanvas {
+            width: 100%;
+            height: 700px;
+            padding-top: 5%;
+            margin-bottom: 3%;
+            border: solid black 1px;
+        }
+        #inputDiv {
+            z-index: 999999;
+            position: absolute;
+            margin-top: 816px;
+            background-color: darkgray;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 7px;
+            padding-right: 7px;
+            border-radius: 7px;
+        }
+        input {
+            border-radius: 4px;
+        }
+        button {
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            color: white;
+            background-color: sandybrown;
+        }
+        .dateHeader {
+            font-family: 'Raleway', sans-serif;
+            font-size: 26px;
+            margin-top: 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 id="mainHeader">Weather Application</h1>
+    <h2 id="locationHeader"></h2>
+    <div id="forecast_content"></div>
+    <div id="inputDiv">
+        <form id="form1">
+            <input type="text" placeholder="Location" id="addressInput">
+            <button type="submit" id="searchButton" form="form1">Search</button>
+        </form>
+    </div>
+    <div id="mapCanvas"></div>
+</div>
+<script src="../js/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAEkeg8HwqmbA1eqMB20rH11W7AidFspQs"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
+<script>
+    (function(){
+        "use strict";
+
+        var lat = 29.610265;
+        var lon = -98.497740;
+
+        function reload() {
+
+            $.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
+                APPID: "0f2b5423a26bf7a5115e41588e269a9f",
+                lat: lat,
+                lon: lon,
+                units: "imperial",
+                cnt: 3
+            }).done(function (data) {
+
+                var array = [];
+
+                data.list.forEach(function (object) {
+                    var newObject = {
+                        date: moment.unix(object.dt).format("dddd" + "<br>" + "MMM DD YYYY"),
+                        windSpeed: object.speed,
+                        high: object.temp.max,
+                        low: object.temp.min,
+                        humidity: object.humidity,
+                        condition: object.weather[0].main
+                    };
+                    array.push(newObject);
+                });
+
+                for (var i = 0; i < 3; i++) {
+
+                    var forecastContent;
+
+                    if (array[i].condition == "Clear") {
+                        forecastContent = "<div class='contentDiv'>" + "<h2 class='dateHeader'>" + array[i].date + "</h2>" + "<img src='../img/sun.png'>" + "<p>" + "High: " + array[i].high.toFixed(0) + "°F" + "</p>" +
+                                "<p>" + "Low: " + array[i].low.toFixed(0) + "°F" + "</p>" +
+                                "<p>" + "Humidity: " + array[i].humidity + "</p>" +
+                                "<p>" + "Condition: " + array[i].condition + "</p>" +
+                                "<p>" + "Wind Speed: " + array[i].windSpeed.toFixed(1) + "</p>" + "</div>";
+                    } else if (array[i].condition == "Rain") {
+                        forecastContent = "<div class='contentDiv'>" + "<h2 class='dateHeader'>" + array[i].date + "</h2>" + "<img src='../img/rain2.png'>" + "<p>" + "High: " + array[i].high.toFixed(0) + "°F" + "</p>" +
+                                "<p>" + "Low: " + array[i].low.toFixed(0) + "°F" + "</p>" +
+                                "<p>" + "Humidity: " + array[i].humidity + "</p>" +
+                                "<p>" + "Condition: " + array[i].condition + "</p>" +
+                                "<p>" + "Wind Speed: " + array[i].windSpeed.toFixed(1) + "</p>" + "</div>";
+                    } else if (array[i].condition == "Mist"){
+                        forecastContent = "<div class='contentDiv'>" + "<h2 class='dateHeader'>" + array[i].date + "</h2>" + "<img src='../img/mist.png'>" + "<p>"+ "High: " + array[i].high.toFixed(0) + "°F" + "</p>" +
+                                "<p>" + "Low: " + array[i].low.toFixed(0) + "°F" + "</p>" +
+                                "<p>" + "Humidity: " + array[i].humidity + "</p>" +
+                                "<p>" + "Condition: " + array[i].condition + "</p>" +
+                                "<p>" + "Wind Speed: " + array[i].windSpeed.toFixed(1) + "</p>" + "</div>";
+                    } else if (array[i].condition == "Snow") {
+                        forecastContent = "<div class='contentDiv'>" + "<h2 class='dateHeader'>" + array[i].date + "</h2>" + "<img src='../img/snow.png'>" + "<p>"+ "High: " + array[i].high.toFixed(0) + "°F" + "</p>" +
+                                "<p>" + "Low: " + array[i].low.toFixed(0) + "°F" + "</p>" +
+                                "<p>" + "Humidity: " + array[i].humidity + "</p>" +
+                                "<p>" + "Condition: " + array[i].condition + "</p>" +
+                                "<p>" + "Wind Speed: " + array[i].windSpeed.toFixed(1) + "</p>" + "</div>";
+                    } else if (array[i].condition == "Storm") {
+                        forecastContent = "<div class='contentDiv'>" + "<h2 class='dateHeader'>" + array[i].date + "</h2>" + "<img src='../img/storm.png'>" + "<p>"+ "High: " + array[i].high.toFixed(0) + "°F" + "</p>" +
+                                "<p>" + "Low: " + array[i].low.toFixed(0) + "°F" + "</p>" +
+                                "<p>" + "Humidity: " + array[i].humidity + "</p>" +
+                                "<p>" + "Condition: " + array[i].condition + "</p>" +
+                                "<p>" + "Wind Speed: " + array[i].windSpeed.toFixed(1) + "</p>" + "</div>";
+                    } else if (array[i].condition == "Clouds") {
+                        forecastContent = "<div class='contentDiv'>" + "<h2 class='dateHeader'>" + array[i].date + "</h2>" + "<img src='../img/clouds.png'>" + "<p>"+ "High: " + array[i].high.toFixed(0) + "°F" + "</p>" +
+                                "<p>" + "Low: " + array[i].low.toFixed(0) + "°F" + "</p>" +
+                                "<p>" + "Humidity: " + array[i].humidity + "</p>" +
+                                "<p>" + "Condition: " + array[i].condition + "</p>" +
+                                "<p>" + "Wind Speed: " + array[i].windSpeed.toFixed(1) + "</p>" + "</div>";
+                    }
+
+                    $("#forecast_content").append(forecastContent);
+                    $("#locationHeader").html(data.city.name);
+                }
+
+            });
+
+        }
+        reload();
+//----------------------------------------------------------------------------------------------------------------------//
+
+        function mapFunction() {
+
+            var markerArray = [];
+
+            var mapOptions = {
+                zoom: 6,
+                center: {
+                    lat: 29.610265,
+                    lng: -98.497740
+                }
+            };
+
+            var map = new google.maps.Map(document.getElementById("mapCanvas"), mapOptions);
+
+            var position = {lat: 29.610265, lng: -98.497740};
+
+            var initialMarker = new google.maps.Marker({
+                position: position,
+                map: map,
+                draggable: true,
+                animation: google.maps.Animation.DROP,
+                title: "San Antonio"
+            });
+            markerArray.push(initialMarker);
+
+
+            google.maps.event.addListener(initialMarker, 'dragend', function (marker) {
+                lat = marker.latLng.lat();
+                lon = marker.latLng.lng();
+                $("#forecast_content").html("");
+                reload();
+            });
+
+            $("#form1").submit(function(e) {
+                e.preventDefault();
+            });
+
+            $("#searchButton").click(function () {
+
+                var inputAddress = $("#addressInput").val();
+
+                function inputMarker(location) {
+                    var inputMarker = new google.maps.Marker({
+                        position: location,
+                        map: map,
+                        draggable: true,
+                        animation: google.maps.Animation.DROP
+                    });
+                    markerArray.push(inputMarker);
+                    markerArray[0].setMap(null);
+                    markerArray.shift();
+
+                    google.maps.event.addListener(inputMarker, 'dragend', function (marker) {
+                        lat = marker.latLng.lat();
+                        lon = marker.latLng.lng();
+                        $("#forecast_content").html("");
+                        reload();
+                    });
+                }
+
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ "address": inputAddress }, function(results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        map.setCenter(results[0].geometry.location);
+                        lat = results[0].geometry.location.lat();
+                        lon = results[0].geometry.location.lng();
+                        var myLatLng = {lat: lat, lng: lon};
+                        inputMarker(myLatLng);
+                        $("#forecast_content").html("");
+                        reload();
+                    } else {
+                        alert("Geocoding was not successful - STATUS: " + status);
+                    }
+                });
+            });
+
+        }
+        mapFunction();
+
+    })();
+</script>
+</body>
+</html>
