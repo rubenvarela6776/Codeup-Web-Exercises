@@ -154,7 +154,7 @@
 <div id="posts"></div>
 <div id="newPostDiv">
     <h1 id="newPostHeader">New Post</h1>
-    <form action="../data/blog.json" method="POST" id="form1">
+    <form id="form1">
         <div class="form-group">
             <input id="title" placeholder="TITLE" required>
             <br>
@@ -195,12 +195,14 @@
 //            })
         });
 
-
+        $("#form1").submit(function(e) {
+            e.preventDefault();
+        });
 
         var array = [];
 
         $("#submitBtn").click(function() {
-            if($("#title").value == "" || $("#content").value == "" || $("#tags").value == "") {
+            if($("#title").value !== "" || $("#content").value !== "" || $("#tags").value !== "") {
                 var title = $("#title").val();
                 var content = $("#content").val();
                 var date = $("#dates").val();
