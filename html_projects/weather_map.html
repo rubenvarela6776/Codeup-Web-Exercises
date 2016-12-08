@@ -8,12 +8,16 @@
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <style>
+        body {
+            /*background: 100%;*/
+            background: no-repeat;
+            background-size: 100% 100%;
+        }
         #forecast_content {
-            /*text-align: center;*/
             width: 100%;
             margin-left: 9%;
             height: 145px;
-            padding-top: 20px;
+            padding-top: 15px;
             padding-bottom: 5%;
         }
         .contentDiv {
@@ -29,6 +33,7 @@
             font-family: 'Merriweather Sans', sans-serif;
             padding-top: 8px;
             border-radius: 8px;
+            margin-bottom: 3%;
         }
         #mainHeader {
             text-align: center;
@@ -57,15 +62,14 @@
         #mapCanvas {
             width: 100%;
             height: 700px;
-            padding-top: 5%;
             margin-bottom: 3%;
-            border: solid black 1px;
         }
         #inputDiv {
+            width: 25%;
             z-index: 999999;
             position: absolute;
-            margin-top: 816px;
-            background-color: darkgray;
+            margin-top: 222px;
+            margin-left: 119px;
             padding-top: 10px;
             padding-bottom: 10px;
             padding-left: 7px;
@@ -73,14 +77,20 @@
             border-radius: 7px;
         }
         input {
-            border-radius: 4px;
-        }
-        button {
-            border-radius: 5px;
-            border: none;
+            width: 100%;
+            border: 1px solid transparent;
+            box-sizing: border-box;
             outline: none;
-            color: white;
-            background-color: sandybrown;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+            font-family: Roboto;
+            font-size: 15px;
+            font-weight: 300;
+            height: 30px;
+            padding-left: 10px;
+            text-overflow: ellipsis;
+        }
+        input:focus {
+            border-color: #4d90fe;
         }
         .dateHeader {
             font-family: 'Raleway', sans-serif;
@@ -88,17 +98,49 @@
             margin-top: 0;
             text-align: center;
         }
+        #daysForecast {
+            text-align: center;
+            padding-top: 0.5%;
+            padding-bottom: 0.5%;
+        }
+        select {
+            border: none;
+            width: 20%;
+            outline: none;
+        }
+        /*#backgroundCondition {*/
+
+            /**/
+        /*}*/
+        /*.fullscreen-bg__video {*/
+            /*position: absolute;*/
+            /*z-index: -9999999999;*/
+            /*top: 0;*/
+            /*right: 0;*/
+            /*bottom: 0;*/
+            /*left: 0;*/
+        /*}*/
     </style>
 </head>
 <body>
 <div class="container">
     <h1 id="mainHeader">Weather Application</h1>
     <h2 id="locationHeader"></h2>
+    <div id="daysForecast">
+        <form id="form2">
+            <select id="forecastSelect">
+                <option value="3" selected>3 Day Forecast</option>
+                <option value="5">5 Day Forecast</option>
+                <option value="7">7 Day Forecast</option>
+            </select>
+            <button id="forecastBtn" type="submit">Submit</button>
+        </form>
+    </div>
     <div id="forecast_content"></div>
     <div id="inputDiv">
         <form id="form1">
-            <input type="text" placeholder="Location" id="addressInput">
-            <button type="submit" id="searchButton" form="form1">Search</button>
+            <input type="text" placeholder="Search Box" id="addressInput">
+            <input type="submit" id="searchInput" hidden>
         </form>
     </div>
     <div id="mapCanvas"></div>
@@ -113,6 +155,7 @@
 
         var lat = 29.610265;
         var lon = -98.497740;
+        var count = 3;
 
         function reload() {
 
@@ -121,8 +164,10 @@
                 lat: lat,
                 lon: lon,
                 units: "imperial",
-                cnt: 3
+                cnt: count
             }).done(function (data) {
+
+                $("#forecast_content").html("");
 
                 var array = [];
 
@@ -136,11 +181,13 @@
                         condition: object.weather[0].main
                     };
                     array.push(newObject);
+
+                    console.log(object.weather[0].main)
                 });
 
-                for (var i = 0; i < 3; i++) {
+                var forecastContent;
 
-                    var forecastContent;
+                for (var i = 0; i < array.length; i++) {
 
                     if (array[i].condition == "Clear") {
                         forecastContent = "<div class='contentDiv'>" + "<h2 class='dateHeader'>" + array[i].date + "</h2>" + "<img src='../img/sun.png'>" + "<p>" + "High: " + array[i].high.toFixed(0) + "°F" + "</p>" +
@@ -184,8 +231,29 @@
                     $("#locationHeader").html(data.city.name);
                 }
 
-            });
+//                if (array[0].condition == "Clear") {
+//                    $("body").css("background-image", "url('../img/clear.gif')");
+//                    $("#mainHeader").css("color", "black");
+//                    $("#locationHeader").css("color", "black")
+//                } else if (array[0].condition == "Rain") {
+//                    $("body").css("background-image", "url('../img/rain.gif')");
+//                    $("#mainHeader").css("color", "white");
+//                    $("#locationHeader").css("color", "white")
+//                } else if (array[0].condition == "Snow") {
+//                    $("body").css("background-image", "url('../img/snow3.gif')");
+//                    $("#mainHeader").css("color", "white");
+//                    $("#locationHeader").css("color", "white")
+//                } else if (array[0].condition == "Storm") {
+//                    $("body").css("background-image", "url('../img/storm.gif')");
+//                    $("#mainHeader").css("color", "white");
+//                    $("#locationHeader").css("color", "white")
+//                } else if (array[0].condition == "Clouds") {
+//                    $("body").css("background-image", "url('../img/clouds2.gif')");
+//                } else {
+//                    return false;
+//                }
 
+            });
         }
         reload();
 //----------------------------------------------------------------------------------------------------------------------//
@@ -216,18 +284,24 @@
             markerArray.push(initialMarker);
 
 
-            google.maps.event.addListener(initialMarker, 'dragend', function (marker) {
-                lat = marker.latLng.lat();
-                lon = marker.latLng.lng();
-                $("#forecast_content").html("");
-                reload();
-            });
+            function dragend (marker) {
+                google.maps.event.addListener(marker, 'dragend', function (marker) {
+                    lat = marker.latLng.lat();
+                    lon = marker.latLng.lng();
+                    reload();
+                });
+            }
+            dragend(initialMarker);
 
             $("#form1").submit(function(e) {
                 e.preventDefault();
             });
 
-            $("#searchButton").click(function () {
+            $("#form2").submit(function(e) {
+                e.preventDefault();
+            });
+
+            $("#searchInput").click(function() {
 
                 var inputAddress = $("#addressInput").val();
 
@@ -241,13 +315,7 @@
                     markerArray.push(inputMarker);
                     markerArray[0].setMap(null);
                     markerArray.shift();
-
-                    google.maps.event.addListener(inputMarker, 'dragend', function (marker) {
-                        lat = marker.latLng.lat();
-                        lon = marker.latLng.lng();
-                        $("#forecast_content").html("");
-                        reload();
-                    });
+                    dragend(inputMarker);
                 }
 
                 var geocoder = new google.maps.Geocoder();
@@ -258,13 +326,18 @@
                         lon = results[0].geometry.location.lng();
                         var myLatLng = {lat: lat, lng: lon};
                         inputMarker(myLatLng);
-                        $("#forecast_content").html("");
                         reload();
                     } else {
                         alert("Geocoding was not successful - STATUS: " + status);
                     }
                 });
             });
+
+            $("#forecastBtn").click(function() {
+                var result = $("#forecastSelect").val();
+                count = result;
+                reload()
+            })
 
         }
         mapFunction();
