@@ -14,18 +14,18 @@
     $(document).ready(function() {
 
         var konamiCode = [38,38,40,40,37,39,37,39,66,65,13];
-        var index = 0;
+        var i = 0;
 
         $(document).keyup(function (event) {
-            if(konamiCode[index] == event.keyCode) {
-                index++
+            if(konamiCode[i] == event.keyCode) {
+                i++
             } else {
-                index = 0
+                i = 0
             }
 
             console.log(event.keyCode);
 
-            if(index == konamiCode.length) {
+            if(i == konamiCode.length) {
                 alert("hey")
             }
 
